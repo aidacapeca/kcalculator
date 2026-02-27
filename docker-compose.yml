@@ -8,8 +8,11 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
+    environment:
+      DATABASE_URL: postgresql+psycopg2://calories_user:strongpassword@db:5432/calories_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   frontend:
     build:
@@ -22,16 +25,19 @@ services:
       - ./frontend:/app
     depends_on:
       - app
-
   db:
     image: postgres:16
-    container_name: calories_postgres
     environment:
       POSTGRES_USER: calories_user
-      POSTGRES_PASSWORD: calories_pass
+      POSTGRES_PASSWORD: strongpassword
       POSTGRES_DB: calories_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U calories_user -d calories_db"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
     volumes:
       - calories_postgres_data:/var/lib/postgresql/data
 

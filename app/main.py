@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from db import engine, Base, get_db
-from app import schemas
+import schemas
 from models import foods, users
 from sqlalchemy.orm import Session 
 
