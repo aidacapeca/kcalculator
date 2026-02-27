@@ -7,8 +7,9 @@ WORKDIR /app
 COPY . .
 
 # Instala dependencias
+COPY requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic
+RUN pip install -r requirements.txt
 
 # Expone el puerto
 EXPOSE 8000

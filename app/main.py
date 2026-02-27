@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
-from app.db import engine, Base
+from db import engine, Base, get_db
 from app import schemas
-from app.models import foods, users
-from app.db import engine, Base, get_db
+from models import foods, users
 from sqlalchemy.orm import Session 
 
 Base.metadata.create_all(bind=engine)

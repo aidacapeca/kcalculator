@@ -11,6 +11,8 @@ The project runs with Docker and PostgreSQL.
 - **SQLAlchemy:** ORM
 - **Pydantic:** Data validation
 - **Docker & Docker Compose:** Containerization
+- **React:** 
+
 
 ## Technical Requirements 
 Make sure you have the following installed o your machine: 
