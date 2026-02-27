@@ -17,3 +17,16 @@ class FoodResponse(BaseModel):
 
 
 
+class UserCreate(BaseModel):
+    name: str
+    username: str 
+    password: str 
+    sex: Optional[str] = None 
+    
+class UserResponse(BaseModel):
+    name: str
+    username: str 
+    sex: str
+    
+    class Config: 
+        from_attributes = True

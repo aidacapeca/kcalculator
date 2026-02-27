@@ -45,7 +45,7 @@ This will
 _At this point the DB will be empty unless you restore the dump_ 
 
 ### Start the project with existing data (using dump.sql )
-1. Start containers as usual with `docker compuse up -d` _(you can check is running properly using `docker ps`)
+1. Start containers as usual with `docker compose up -d` _(you can check is running properly using `docker ps`)
 2. Restore the database 
 ```
 docker exec -i calories_postgres \
@@ -63,3 +63,6 @@ psql -U calories_user -d calories_db < dump.sql
 # TBD: 
 1. Instructions of how to close the project and include new data by exporting dump
 2. Script para iniciar docker y la api y para cerrar el proyecto
+
+1. source venv/bin/activate
+2. uvicorn app.main:app --reload
