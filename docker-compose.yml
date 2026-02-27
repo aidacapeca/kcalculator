@@ -1,18 +1,39 @@
-version: "3.9"
-
 services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: calories_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: calories_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - app
+
   db:
     image: postgres:16
     container_name: calories_postgres
-    restart: always
     environment:
       POSTGRES_USER: calories_user
-      POSTGRES_PASSWORD: strongpassword
+      POSTGRES_PASSWORD: calories_pass
       POSTGRES_DB: calories_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - calories_postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  calories_postgres_data:
