@@ -30,3 +30,5 @@ frontend/.vite/
 frontend/.next/
 frontend/.env
 frontend/.env.local
+node_modules
+node_modules
