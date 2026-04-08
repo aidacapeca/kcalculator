@@ -33,18 +33,31 @@ git --version
 git clone <url>
 cd kcalculator 
 ```
+## Start the Project
 
-## Start the project 
-Build and start containers: 
-`docker compose up --build` 
+### Quick Start:
+To quickly start the project, run the following command in the root directory (`kcalculator`):
+```
+npm run start
+```
+This command will:
+- Initialize an empty database.
+- Launch the API server (using Docker containers).
+- Start the mobile application.
 
-This will 
-* Build the FastAPI container 
-* Start PostgreSQL 
-* Create the database 
-* Create tables automatically using SQLAlchemy 
+### Step-by-Step Guide:
+If you prefer a more detailed approach, follow these steps:
 
-_At this point the DB will be empty unless you restore the dump_ 
+1. Build and start the Docker containers:
+    ```
+    docker compose up --build
+    ```
+    This process will:
+    - Build the FastAPI container.
+    - Start the PostgreSQL database server.
+    - Automatically create the database and tables using SQLAlchemy.
+
+_⚠ Note: The database will be empty unless you restore it using a dump file._
 
 ### Start the project with existing data (using dump.sql )
 1. Start containers as usual with `docker compose up --build` _(you can check is running properly using `docker ps`)_ 
