@@ -40,21 +40,38 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 
 @app.post("/bulk-upload-foods", response_model=list[schemas.FoodResponse], tags=["Foods"])
 def bulk_create_food(food: list[schemas.FoodCreate], db: Session = Depends(get_db)):
-    pass
+    if not foods:
+        raise HTTPException(status_code=400, detail="The food list cannot be empty")
+    db_foods = [models.Food(**food.model_dump()) for food in foods]
     
-@app.post("/food", response_model=schemas.FoodResponse,  tags=["Foods"])
+    try:
+        db.add_all(db_foods)
+        db.commit()
+        for food in db_foods:
+            db.refresh(food)
+    except IntegrityError as e:
+        db.rollback()
+        raise HTTPException(status_code=409, detail=f"Duplicate or invalid data: {str(e.orig)}")
+    except SQLAlchemyError as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    
+    return db_foods
+    
+@app.post("/food", response_model=schemas.FoodResponse, tags=["Foods"])
 def create_food(food: schemas.FoodCreate, db: Session = Depends(get_db)):
-    db_food = foods.Food(
-        name=food.name, 
-        calories_per_unit=food.calories_per_unit, 
-        proteins_per_unit=food.proteins_per_unit, 
-        serving_unit=food.serving_unit, 
-        serving_size=food.serving_size,
-        category=food.category
-    )
-    db.add(db_food)
-    db.commit()
-    db.refresh(db_food)
+    db_food = foods.Food(**food.model_dump())
+    
+    try:
+        db.add(db_food)
+        db.commit()
+        db.refresh(db_food)
+    except IntegrityError as e:
+        db.rollback()
+        raise HTTPException(status_code=409, detail=f"Duplicate or invalid data: {str(e.orig)}")
+    except SQLAlchemyError as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     
     return db_food
 
