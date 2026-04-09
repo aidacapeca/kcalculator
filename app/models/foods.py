@@ -11,5 +11,5 @@ class Food(Base):
     calories_per_unit = Column(Float, nullable=False)
     proteins_per_unit = Column(Float, nullable=False)
     serving_unit = Column(String, nullable=False) 
-    serving_size = Column(String, nullable=True)
+    serving_size = Column(Float, nullable=True)
     category = Column(String, nullable=True)
