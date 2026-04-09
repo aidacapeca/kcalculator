@@ -77,3 +77,4 @@ psql -U calories_user -d calories_db < dump.sql
 
 # TBD: 
 1. Instructions of how to close the project and include new data by exporting dump
+2. Adding a forced push
