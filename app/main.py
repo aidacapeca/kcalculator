@@ -46,7 +46,10 @@ def bulk_create_food(food: list[schemas.FoodCreate], db: Session = Depends(get_d
 def create_food(food: schemas.FoodCreate, db: Session = Depends(get_db)):
     db_food = foods.Food(
         name=food.name, 
-        calories_per_100g=food.calories_per_100g, 
+        calories_per_unit=food.calories_per_unit, 
+        proteins_per_unit=food.proteins_per_unit, 
+        serving_unit=food.serving_unit, 
+        serving_size=food.serving_size,
         category=food.category
     )
     db.add(db_food)
