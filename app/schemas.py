@@ -1,16 +1,17 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class FoodCreate(BaseModel):
+class Food(BaseModel):
     name: str 
-    calories_per_100g: float 
-    category: Optional[str] = None 
+    calories_per_unit: float 
+    proteins_per_unit: float
+    serving_unit: str
+    serving_size: Optional[float] = None
+    category: Optional[str] = None
+    image_url: Optional[str] = None
 
-class FoodResponse(BaseModel):
+class FoodResponse(Food):
     id: int 
-    name: str 
-    calories_per_100g: float 
-    # proteins_per_100g: float 
     
     class Config: 
         from_attributes = True  # convert SQLAlchemy to JSON

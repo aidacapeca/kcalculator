@@ -7,6 +7,9 @@ from sqlalchemy.orm import Session
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="KCalories Calculator")
+print("Creating tables...")
+Base.metadata.create_all(bind=engine)
+print("Tables created successfully!")
 
 @app.get("/")
 def root():
@@ -39,7 +42,7 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
     return user
 
 @app.post("/bulk-upload-foods", response_model=list[schemas.FoodResponse], tags=["Foods"])
-def bulk_create_food(food: list[schemas.FoodCreate], db: Session = Depends(get_db)):
+def bulk_create_food(food: list[schemas.Food], db: Session = Depends(get_db)):
     if not foods:
         raise HTTPException(status_code=400, detail="The food list cannot be empty")
     db_foods = [models.Food(**food.model_dump()) for food in foods]
@@ -59,7 +62,7 @@ def bulk_create_food(food: list[schemas.FoodCreate], db: Session = Depends(get_d
     return db_foods
     
 @app.post("/food", response_model=schemas.FoodResponse, tags=["Foods"])
-def create_food(food: schemas.FoodCreate, db: Session = Depends(get_db)):
+def create_food(food: schemas.Food, db: Session = Depends(get_db)):
     db_food = foods.Food(**food.model_dump())
     
     try:
