@@ -38,6 +38,10 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
+@app.post("/bulk-upload-foods", response_model=list[schemas.FoodResponse], tags=["Foods"])
+def bulk_create_food(food: list[schemas.FoodCreate], db: Session = Depends(get_db)):
+    pass
+    
 @app.post("/food", response_model=schemas.FoodResponse,  tags=["Foods"])
 def create_food(food: schemas.FoodCreate, db: Session = Depends(get_db)):
     db_food = foods.Food(
