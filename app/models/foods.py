@@ -13,3 +13,4 @@ class Food(Base):
     serving_unit = Column(String, nullable=False) 
     serving_size = Column(Float, nullable=True)
     category = Column(String, nullable=True)
+    image_url = Column(String, nullable=True)
