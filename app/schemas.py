@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+import uuid 
 
 class Food(BaseModel):
     name: str 
@@ -11,7 +12,7 @@ class Food(BaseModel):
     image_url: Optional[str] = None
 
 class FoodResponse(Food):
-    id: int 
+    id: uuid.UUID 
     
     class Config: 
         from_attributes = True  # convert SQLAlchemy to JSON

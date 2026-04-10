@@ -43,9 +43,9 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db)):
 
 @app.post("/bulk-upload-foods", response_model=list[schemas.FoodResponse], tags=["Foods"])
 def bulk_create_food(food: list[schemas.Food], db: Session = Depends(get_db)):
-    if not foods:
+    if not food:
         raise HTTPException(status_code=400, detail="The food list cannot be empty")
-    db_foods = [models.Food(**food.model_dump()) for food in foods]
+    db_foods = [foods.Food(**item.model_dump()) for item in food]
     
     try:
         db.add_all(db_foods)

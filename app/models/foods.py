@@ -6,7 +6,7 @@ import uuid
 class Food(Base):
     __tablename__ = "foods"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4())
+    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     name = Column(String, nullable=False)
     calories_per_unit = Column(Float, nullable=False)
     proteins_per_unit = Column(Float, nullable=False)
