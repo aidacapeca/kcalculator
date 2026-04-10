@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import {getAllFoods} from '../services/kcal/foods'; // 
 import { FoodDetails } from '../types/food';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }: { navigation: any }) => {
   const [foods, setFoods] = useState([] as FoodDetails[]);
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(''); 
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchFoods = async () => {
       try {
-        const response = await getAllFoods()
-        setFoods(response);
+        const response = await getAllFoods();
+        if (isMounted) {
+          setFoods(response);
+          setError('');
+        }
       } catch (err) {
-        setError('Error fetching foods');
+        if (isMounted) {
+          const message = err instanceof Error ? err.message : 'Error fetching foods';
+          setError(message);
+        }
       } finally {
-        setLoading(false); // Finaliza el loading
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     fetchFoods();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
 
@@ -44,9 +58,16 @@ const Dashboard = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Dashboard</Text>
       {foods.map((food) => (
-        <View key={food.id} style={styles.foodItem}>
+        <TouchableOpacity
+          key={food.id}
+          style={styles.foodItem}
+          onPress={() => {
+            console.log('[Dashboard] open FoodDetails with foodId:', food.id);
+            navigation.navigate('FoodDetails', { foodId: food.id });
+          }}
+        >
           <Text style={styles.foodTitle}>{food.name}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
         <Text style={styles.buttonText}>SIGN UP</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button, styles.inviteButton]} onPress={() => alert('Access as Invite pressed')}>
+      <TouchableOpacity style={[styles.button, styles.inviteButton]} onPress={() => navigation.navigate('Dashboard')}>
         <Text style={styles.buttonText}>ACCESS AS INVITE</Text>
       </TouchableOpacity>
     </View>
