@@ -3,6 +3,7 @@ from db import engine, Base, get_db
 import schemas
 from models import foods, users
 from sqlalchemy.orm import Session 
+from sqlalchemy.dialects.postgresql import UUID 
 
 Base.metadata.create_all(bind=engine)
 
@@ -84,7 +85,7 @@ def get_all_foods(db: Session = Depends(get_db)):
     return allFoods
 
 @app.get("/food/{food_id}", response_model=schemas.FoodResponse, tags=["Foods"])
-def get_food_by_id(food_id: int, db: Session = Depends(get_db)):
+def get_food_by_id(food_id: UUID, db: Session = Depends(get_db)):
     food = db.query(foods.Food).filter(foods.Food.id == food_id).first()
     if not food:
         raise HTTPException(status_code=404, detail="Food not found")
