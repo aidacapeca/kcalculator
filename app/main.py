@@ -3,7 +3,7 @@ from db import engine, Base, get_db
 import schemas
 from models import foods, users
 from sqlalchemy.orm import Session 
-from sqlalchemy.dialects.postgresql import UUID 
+from uuid import UUID
 
 Base.metadata.create_all(bind=engine)
 
