@@ -11,6 +11,11 @@ const paperTheme = {
     background: appTheme.colors.background,
     surface: appTheme.colors.surface,
     error: appTheme.colors.error,
+    onPrimary: appTheme.colors.textOnPrimary,
+    onSurface: appTheme.colors.textPrimary,
+    onSurfaceVariant: appTheme.colors.textSecondary,
+    outline: appTheme.colors.border,
+    surfaceVariant: appTheme.colors.secondaryLight,
   },
 };
 

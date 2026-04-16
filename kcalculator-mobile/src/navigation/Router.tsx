@@ -1,11 +1,12 @@
 import React from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, ScrollView, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { Divider, IconButton, Modal, Portal, Surface, Text } from 'react-native-paper';
+import { Button, IconButton, Modal, Portal, Surface, Text } from 'react-native-paper';
 import { PlateProvider, usePlate } from '../context/PlateContext';
+import theme from '../styles/light';
+import { routerStyles as styles } from '../styles/screens';
 import HomeScreen from '../views/Home';
-import SignUpScreen from '../views/SignUp';
 import Dashboard from '../views/Dashboard';
 import FoodDetailsScreen from '../views/FoodDetails';
 
@@ -20,68 +21,109 @@ function AppNavigator() {
         <Stack.Navigator
           initialRouteName="Home"
           screenOptions={{
+            headerStyle: { backgroundColor: theme.colors.surface },
+            headerTintColor: theme.colors.textPrimary,
+            headerShadowVisible: false,
             headerRight: () => (
               <IconButton
                 icon="silverware-fork-knife"
                 size={18}
-                iconColor="#151515"
+                iconColor={theme.colors.textPrimary}
                 onPress={openDrawer}
               />
             ),
           }}
         >
           <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} options={{ title: 'Create New Account' }} />
           <Stack.Screen name="Dashboard" component={Dashboard} options={{ title: 'Dashboard' }} />
-          <Stack.Screen name="FoodDetails" component={FoodDetailsScreen} options={{ title: 'Food Details' }} />
+          <Stack.Screen name="FoodDetails" component={FoodDetailsScreen} options={{ title: 'Details' }} />
         </Stack.Navigator>
       </NavigationContainer>
 
       <Portal>
         <Modal visible={drawerVisible} onDismiss={closeDrawer} contentContainerStyle={styles.drawerModal}>
-          <Surface style={styles.drawerSheet} elevation={4}>
+          <Surface style={styles.drawerSheet} elevation={2}>
             <View style={styles.drawerHeader}>
-              <IconButton icon="silverware-fork-knife" containerColor="#151515" iconColor="#FFFFFF" />
-              <IconButton icon="close" onPress={closeDrawer} />
+              <IconButton
+                icon="silverware-fork-knife"
+                containerColor={theme.colors.secondaryLight}
+                iconColor={theme.colors.textPrimary}
+              />
+              <IconButton icon="close" iconColor={theme.colors.textPrimary} onPress={closeDrawer} />
             </View>
 
-            <Text variant="headlineMedium" style={styles.drawerTitle}>
-              Plate
+            <Text variant="titleLarge" style={styles.drawerTitle}>
+              Plato
+            </Text>
+            <Text style={styles.drawerSubtitle}>
+              {items.length} {items.length === 1 ? 'alimento' : 'alimentos'} seleccionados
             </Text>
 
-            <View style={styles.drawerContent}>
+            <ScrollView style={styles.drawerContent} contentContainerStyle={styles.drawerContentInner}>
               {items.length === 0 ? (
-                <Text variant="bodyLarge" style={styles.drawerText}>
-                  No foods added yet.
+                <Text variant="bodyMedium" style={styles.drawerText}>
+                  No se han agregado alimentos aún.
                 </Text>
               ) : (
                 items.map((item) => (
-                  <Text key={item.id} variant="bodyLarge" style={styles.drawerListItem}>
-                    • {item.name} - {item.amount} {item.unit} - {item.calories} kcal
-                  </Text>
+                  <View key={item.id} style={styles.drawerItemCard}>
+                    <Text variant="titleMedium" style={styles.drawerItemTitle}>
+                      {item.name}
+                    </Text>
+                    <Text variant="bodySmall" style={styles.drawerItemMeta}>
+                      {item.amount} {item.unit} • {item.calories} kcal • {item.proteins} gr de proteína
+                    </Text>
+                  </View>
                 ))
               )}
+            </ScrollView>
+
+            <View style={styles.drawerSummary}>
+              <View style={styles.summaryItem}>
+                <IconButton
+                  icon="scale"
+                  size={18}
+                  iconColor={theme.colors.primary}
+                  style={styles.summaryIcon}
+                />
+                <Text style={styles.summaryText}>
+                  <Text style={styles.summaryValue}>{totalCalories}</Text> kcal
+                </Text>
+              </View>
+
+              <View style={styles.summaryItem}>
+                <IconButton
+                  icon="arm-flex-outline"
+                  size={18}
+                  iconColor={theme.colors.secondary}
+                  style={styles.summaryIcon}
+                />
+                <Text style={styles.summaryText}>
+                  <Text style={styles.summaryValue}>{totalProteins} gr</Text> de proteína
+                </Text>
+              </View>
             </View>
 
-            <Text variant="headlineSmall" style={styles.totalText}>
-              Sum of kcal: {totalCalories}
-            </Text>
-            <Text variant="headlineSmall" style={styles.totalText}>
-              Sum of proteins: {totalProteins}
-            </Text>
             <View style={styles.drawerActions}>
-              <IconButton
+              <Button
+                mode="text"
+                compact
                 icon="delete-outline"
-                size={30}
-                iconColor="#111111"
+                textColor={theme.colors.textSecondary}
                 onPress={clearItems}
-              />
-              <IconButton
-                icon="send"
-                size={30}
-                iconColor="#111111"
+              >
+                Vaciar
+              </Button>
+              <Button
+                mode="contained-tonal"
+                compact
+                icon="send-outline"
+                buttonColor={theme.colors.secondaryLight}
+                textColor={theme.colors.textPrimary}
                 onPress={() => Alert.alert('Plate', 'Placeholder action')}
-              />
+              >
+                Enviar por Whatsapp
+              </Button>
             </View>
           </Surface>
         </Modal>
@@ -97,57 +139,3 @@ export default function Router() {
     </PlateProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerModal: {
-    margin: 0,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-  },
-  drawerSheet: {
-    width: '78%',
-    height: '100%',
-    backgroundColor: '#EDF1E6',
-    borderTopLeftRadius: 28,
-    borderBottomLeftRadius: 28,
-    paddingTop: 24,
-    paddingHorizontal: 16,
-    paddingBottom: 24,
-  },
-  drawerHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 24,
-  },
-  drawerTitle: {
-    color: '#5B5ED2',
-    fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 24,
-  },
-  drawerContent: {
-    flex: 1,
-  },
-  drawerText: {
-    color: '#333333',
-    textAlign: 'center',
-  },
-  drawerListItem: {
-    color: '#111111',
-    marginBottom: 18,
-    lineHeight: 28,
-  },
-  totalText: {
-    textAlign: 'center',
-    color: '#111111',
-    marginTop: 16,
-    marginBottom: 24,
-  },
-  drawerActions: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 24,
-  },
-});

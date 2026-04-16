@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, ScrollView, View } from 'react-native';
 import {
   ActivityIndicator,
   Avatar,
@@ -12,6 +12,8 @@ import {
   TextInput,
 } from 'react-native-paper';
 import { usePlate } from '../context/PlateContext';
+import theme from '../styles/light';
+import { foodDetailsStyles as styles } from '../styles/screens';
 import { getFoodById } from '../services/kcal/foods';
 import { FoodDetails } from '../types/food';
 
@@ -33,7 +35,7 @@ const DetailRow = ({ label, value }: { label: string; value: string }) => (
         {value}
       </Text>
     </View>
-    <Divider />
+    <Divider style={styles.sectionDivider} />
   </>
 );
 
@@ -75,7 +77,7 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator animating size="large" color="#5B5ED2" />
+        <ActivityIndicator animating size="large" color={theme.colors.primary} />
         <Text variant="titleMedium" style={styles.loadingText}>
           Loading food details...
         </Text>
@@ -131,245 +133,95 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <Surface style={styles.heroCard} elevation={2}>
-          <Text variant="headlineMedium" style={styles.title}>
-            {food.name || 'Unknown food'}
-          </Text>
-          <View style={styles.imageWrapper}>
-            {food.image_url && !imageFailed ? (
-              <Image
-                source={{ uri: food.image_url }}
-                style={styles.image}
-                resizeMode="cover"
-                onError={() => setImageFailed(true)}
-              />
-            ) : (
-              <Avatar.Icon size={84} icon="image-outline" style={styles.imagePlaceholder} />
-            )}
-          </View>
+      <View style={styles.headerBlock}>
+        <View style={styles.imageWrapper}>
+          {food.image_url && !imageFailed ? (
+            <Image
+              source={{ uri: food.image_url }}
+              style={styles.image}
+              resizeMode="cover"
+              onError={() => setImageFailed(true)}
+            />
+          ) : (
+            <Avatar.Icon size={72} icon="image-outline" style={styles.imagePlaceholder} />
+          )}
+        </View>
 
-          <View style={styles.amountControlRow}>
-            <Surface style={styles.amountBox} elevation={1}>
-              <TextInput
-                mode="flat"
-                value={amount}
-                onChangeText={updateAmount}
-                keyboardType="numeric"
-                style={styles.amountInput}
-                underlineColor="transparent"
-                activeUnderlineColor="transparent"
-                contentStyle={styles.amountInputContent}
-              />
-              <Text style={styles.unitText}>{food.serving_unit || 'g'}</Text>
-            </Surface>
-
-            <View style={styles.amountButtons}>
-              <IconButton
-                icon="chevron-up"
-                mode="contained"
-                containerColor="#D8D1F0"
-                iconColor="#4E4ECF"
-                size={16}
-                onPress={() => changeAmountBy(10)}
-              />
-              <IconButton
-                icon="chevron-down"
-                mode="contained"
-                containerColor="#D8D1F0"
-                iconColor="#4E4ECF"
-                size={16}
-                onPress={() => changeAmountBy(-10)}
-              />
-            </View>
-          </View>
-
-          <Text variant="displaySmall" style={styles.calories}>
-            {caloriesText}
-          </Text>
-          <Text variant="displaySmall" style={styles.calories}>
-            {proteinsText}
-          </Text>
-          <IconButton
-            icon="silverware-fork-knife"
-            mode="contained"
-            containerColor="#151515"
-            iconColor="#FFFFFF"
-            size={28}
-            style={styles.plateButton}
-            onPress={addCurrentFoodToPlate}
+        <Text variant="headlineSmall" style={styles.title}>
+          {food.name || 'Unknown food'}
+        </Text>
+      </View>
+      <View style={styles.amountControlRow}>
+        <Surface style={styles.amountBox} elevation={0}>
+          <TextInput
+            mode="flat"
+            value={amount}
+            onChangeText={updateAmount}
+            keyboardType="numeric"
+            style={styles.amountInput}
+            underlineColor="transparent"
+            activeUnderlineColor="transparent"
+            contentStyle={styles.amountInputContent}
           />
+          <Text style={styles.unitText}>{food.serving_unit || 'g'}</Text>
+        </Surface>
 
-        <Card style={styles.sectionCard} mode="elevated">
-          <Card.Content>
-            <Text variant="titleLarge" style={styles.sectionTitle}>
-              Basic data
-            </Text>
-            <Divider style={styles.sectionDivider} />
+        <View style={styles.amountButtons}>
+          <IconButton
+            icon="chevron-up"
+            mode="contained-tonal"
+            containerColor={theme.colors.primary}
+            iconColor={theme.colors.textOnPrimary}
+            size={12}
+            onPress={() => changeAmountBy(10)}
+          />
+          <IconButton
+            icon="chevron-down"
+            mode="contained-tonal"
+            containerColor={theme.colors.primary}
+            iconColor={theme.colors.textOnPrimary}
+            size={12}
+            onPress={() => changeAmountBy(-10)}
+          />
+        </View>
+      </View>
 
-            <DetailRow label="Category" value={food.category || '-'} />
-            <DetailRow label="Base serving" value={`${baseServing} ${food.serving_unit || 'gr'}`} />
-            <DetailRow label="Calories" value={`${food.calories_per_unit || '-'}`} />
-            <DetailRow label="Proteins" value={`${food.proteins_per_unit || '-'}`} />
-          </Card.Content>
-        </Card>
-      </Surface>
+      <View style={styles.nutritionRow}>
+        <Text style={styles.nutritionText}>
+          Calorías: <Text style={styles.nutritionValue}>{caloriesText}</Text>
+        </Text>
+        <Text style={styles.nutritionText}>
+          Proteínas: <Text style={styles.nutritionValue}>{proteinsText}</Text>
+        </Text>
+      </View>
+
+      <Button
+        mode="contained-tonal"
+        icon="silverware-fork-knife"
+        buttonColor={theme.colors.secondaryLight}
+        textColor={theme.colors.textPrimary}
+        style={styles.addButton}
+        labelStyle={styles.addButtonLabel}
+        onPress={addCurrentFoodToPlate}
+      >
+        Agregar al plato
+      </Button>
+
+      <Card style={styles.sectionCard} mode="outlined">
+        <Card.Content>
+          <Text variant="titleMedium" style={styles.sectionTitle}>
+            Datos básicos
+          </Text>
+          <Divider style={styles.sectionDivider} />
+
+          <DetailRow label="Categoria" value={food.category || '-'} />
+          <DetailRow label="Cantidad base" value={`${baseServing} ${food.serving_unit || 'g'}`} />
+          <DetailRow label="Calorías" value={`${food.calories_per_unit || '-'}`} />
+          <DetailRow label="Proteínas" value={`${food.proteins_per_unit || '-'}`} />
+        </Card.Content>
+      </Card>
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#ECECEF',
-  },
-  content: {
-    padding: 20,
-    paddingBottom: 32,
-  },
-  loadingContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ECECEF',
-    padding: 24,
-  },
-  loadingText: {
-    marginTop: 16,
-    color: '#5B5ED2',
-  },
-  errorIcon: {
-    backgroundColor: '#D32F2F',
-  },
-  errorText: {
-    marginTop: 16,
-    textAlign: 'center',
-    color: '#333',
-  },
-  retryButton: {
-    marginTop: 20,
-  },
-  heroCard: {
-    borderRadius: 24,
-    paddingVertical: 24,
-    paddingHorizontal: 18,
-    alignItems: 'center',
-    backgroundColor: '#F7F7FB',
-    marginBottom: 18,
-  },
-  topIcon: {
-    backgroundColor: '#151515',
-    marginBottom: 18,
-  },
-  title: {
-    textAlign: 'center',
-    color: '#5B5ED2',
-    fontWeight: '700',
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: '#8B8B8B',
-    marginTop: 8,
-    marginBottom: 18,
-  },
-  imageWrapper: {
-    width: 170,
-    height: 170,
-    borderRadius: 85,
-    borderWidth: 2,
-    borderColor: '#0A6378',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#EDF5F8',
-    overflow: 'hidden',
-    marginBottom: 18,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  imagePlaceholder: {
-    backgroundColor: '#0C8A8D',
-  },
-  amountControlRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 14,
-  },
-  amountBox: {
-    width: 150,
-    height: 64,
-    borderRadius: 18,
-    backgroundColor: '#F3F1F8',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 12,
-  },
-  amountInput: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    height: 56,
-  },
-  amountInputContent: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: '700',
-    paddingHorizontal: 0,
-  },
-  unitText: {
-    color: '#5F5F6C',
-    fontSize: 16,
-    fontWeight: '600',
-    marginLeft: 4,
-  },
-  amountButtons: {
-    marginLeft: 4,
-    justifyContent: 'center',
-  },
-  calories: {
-    color: '#151515',
-    fontSize: 28,
-    fontWeight: '700',
-  },
-  plateButton: {
-    marginTop: 8,
-    marginBottom: 16,
-    alignSelf: 'center',
-  },
-  sectionCard: {
-    width: '100%',
-    borderRadius: 18,
-    backgroundColor: '#D9D5F5',
-  },
-  sectionTitle: {
-    color: '#26237F',
-    fontWeight: '700',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  sectionDivider: {
-    marginBottom: 4,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 14,
-  },
-  detailLabel: {
-    color: '#2A2A52',
-    fontWeight: '600',
-  },
-  detailValue: {
-    color: '#151515',
-    maxWidth: '55%',
-    textAlign: 'right',
-  },
-  refreshButton: {
-    marginTop: 18,
-    alignSelf: 'stretch',
-  },
-});
 
 export default FoodDetailsScreen;
