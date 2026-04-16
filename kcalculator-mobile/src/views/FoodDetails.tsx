@@ -105,7 +105,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
   const totalCalories = Math.round((food.calories_per_unit || 0) * multiplier);
   const totalProteins = Number(((food.proteins_per_unit || 0) * multiplier).toFixed(1));
 
-  const servingText = `${parsedAmount || 0} ${food.serving_unit || 'gr'}`;
   const caloriesText = `${totalCalories} kcal`;
   const proteinsText = `${totalProteins} g`;
 
@@ -125,6 +124,7 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
       amount: parsedAmount || baseServing,
       unit: food.serving_unit || 'g',
       calories: totalCalories,
+      proteins: totalProteins,
     });
     openDrawer();
   };
@@ -135,10 +135,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
           <Text variant="headlineMedium" style={styles.title}>
             {food.name || 'Unknown food'}
           </Text>
-          <Text variant="bodyLarge" style={styles.subtitle}>
-            {food.category || 'Brief description'}
-          </Text>
-
           <View style={styles.imageWrapper}>
             {food.image_url && !imageFailed ? (
               <Image
@@ -190,7 +186,9 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
           <Text variant="displaySmall" style={styles.calories}>
             {caloriesText}
           </Text>
-
+          <Text variant="displaySmall" style={styles.calories}>
+            {proteinsText}
+          </Text>
           <IconButton
             icon="silverware-fork-knife"
             mode="contained"
@@ -209,17 +207,9 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
             <Divider style={styles.sectionDivider} />
 
             <DetailRow label="Category" value={food.category || '-'} />
-            <DetailRow label="Serving" value={servingText} />
             <DetailRow label="Base serving" value={`${baseServing} ${food.serving_unit || 'gr'}`} />
-            <DetailRow label="Proteins" value={proteinsText} />
-            <View style={styles.detailRow}>
-              <Text variant="bodyLarge" style={styles.detailLabel}>
-                Calories
-              </Text>
-              <Text variant="bodyLarge" style={styles.detailValue}>
-                {caloriesText}
-              </Text>
-            </View>
+            <DetailRow label="Calories" value={`${food.calories_per_unit || '-'}`} />
+            <DetailRow label="Proteins" value={`${food.proteins_per_unit || '-'}`} />
           </Card.Content>
         </Card>
       </Surface>

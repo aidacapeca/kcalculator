@@ -6,6 +6,7 @@ export type PlateItem = {
   amount: number;
   unit: string;
   calories: number;
+  proteins: number;
 };
 
 type PlateContextValue = {
@@ -17,6 +18,7 @@ type PlateContextValue = {
   removeItem: (id: string) => void;
   clearItems: () => void;
   totalCalories: number;
+  totalProteins: number;
 };
 
 const PlateContext = createContext<PlateContextValue | undefined>(undefined);
@@ -44,6 +46,11 @@ export function PlateProvider({ children }: { children: React.ReactNode }) {
     [items],
   );
 
+  const totalProteins = useMemo(
+    () => items.reduce((sum, item) => sum + item.proteins, 0),
+    [items],
+  );
+
   const value = useMemo(
     () => ({
       items,
@@ -54,6 +61,7 @@ export function PlateProvider({ children }: { children: React.ReactNode }) {
       removeItem,
       clearItems,
       totalCalories,
+      totalProteins
     }),
     [items, drawerVisible, totalCalories],
   );

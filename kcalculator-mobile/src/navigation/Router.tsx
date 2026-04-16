@@ -12,7 +12,7 @@ import FoodDetailsScreen from '../views/FoodDetails';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { drawerVisible, openDrawer, closeDrawer, items, clearItems, totalCalories } = usePlate();
+  const { drawerVisible, openDrawer, closeDrawer, items, clearItems, totalCalories, totalProteins } = usePlate();
 
   return (
     <>
@@ -66,7 +66,9 @@ function AppNavigator() {
             <Text variant="headlineSmall" style={styles.totalText}>
               Sum of kcal: {totalCalories}
             </Text>
-
+            <Text variant="headlineSmall" style={styles.totalText}>
+              Sum of proteins: {totalProteins}
+            </Text>
             <View style={styles.drawerActions}>
               <IconButton
                 icon="delete-outline"
