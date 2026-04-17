@@ -33,33 +33,119 @@ export const homeStyles = StyleSheet.create({
 });
 
 export const dashboardStyles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: '#F7F6FB',
+  },
   container: {
-    flexGrow: 1,
     padding: spacing.lg,
-    backgroundColor: colors.background,
+    paddingBottom: spacing.xl,
+  },
+  stateContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.lg,
+    backgroundColor: '#F7F6FB',
+  },
+  heroCard: {
+    marginBottom: spacing.lg,
   },
   title: {
     ...typography.h2,
-    marginBottom: spacing.lg,
-    textAlign: 'center',
+    marginBottom: spacing.xs,
   },
-  foodItem: {
-    marginBottom: spacing.md,
-    padding: spacing.md,
+  subtitle: {
+    ...typography.body,
+    color: colors.textSecondary,
+    fontSize: 14,
+  },
+  categorySection: {
+    marginBottom: spacing.lg,
+  },
+  categoryHeader: {
+    alignSelf: 'flex-start',
+    marginBottom: spacing.sm,
+    backgroundColor: '#ECE8FF',
+    borderRadius: 18,
+    paddingVertical: spacing.sm,
+    paddingHorizontal: spacing.sm,
+  },
+  categoryTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  categoryIconWrap: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#D7D0FF',
+    marginRight: spacing.sm,
+  },
+  categoryTextBlock: {
+    paddingRight: spacing.sm,
+  },
+  categoryTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1F1A44',
+  },
+  categoryCount: {
+    fontSize: 12,
+    color: '#5D5782',
+    marginTop: 2,
+  },
+  sliderContent: {
+    paddingTop: spacing.xs,
+    paddingRight: spacing.sm,
+  },
+  foodCard: {
+    width: 188,
     backgroundColor: colors.surface,
-    borderRadius: radius.md,
+    borderRadius: 16,
+    padding: spacing.sm,
+    marginRight: spacing.sm,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: '#E8E6F5',
     ...shadows.card,
   },
+  foodImage: {
+    width: '100%',
+    height: 108,
+    borderRadius: 12,
+    backgroundColor: '#F0EEFF',
+    marginBottom: spacing.sm,
+  },
+  foodImageFallback: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  foodImageFallbackText: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#6D63FF',
+  },
   foodTitle: {
-    ...typography.body,
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.textPrimary,
+    marginBottom: 6,
+    minHeight: 40,
+    lineHeight: 20,
+  },
+  foodMeta: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: colors.textSecondary,
+    minHeight: 38,
   },
   loading: {
     ...typography.body,
     textAlign: 'center',
     fontWeight: '600',
+    marginTop: spacing.sm,
   },
   error: {
     ...typography.body,
