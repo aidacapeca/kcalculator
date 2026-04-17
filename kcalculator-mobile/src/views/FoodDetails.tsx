@@ -163,7 +163,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
             activeUnderlineColor="transparent"
             contentStyle={styles.amountInputContent}
           />
-          <Text style={styles.unitText}>{food.serving_unit || 'g'}</Text>
         </Surface>
 
         <View style={styles.amountButtons}>
@@ -173,7 +172,7 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
             containerColor={theme.colors.primary}
             iconColor={theme.colors.textOnPrimary}
             size={12}
-            onPress={() => changeAmountBy(10)}
+            onPress={() => changeAmountBy(1)}
           />
           <IconButton
             icon="chevron-down"
@@ -181,7 +180,7 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
             containerColor={theme.colors.primary}
             iconColor={theme.colors.textOnPrimary}
             size={12}
-            onPress={() => changeAmountBy(-10)}
+            onPress={() => changeAmountBy(-1)}
           />
         </View>
       </View>

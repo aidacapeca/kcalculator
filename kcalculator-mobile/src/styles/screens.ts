@@ -35,7 +35,7 @@ export const homeStyles = StyleSheet.create({
 export const dashboardStyles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#F7F6FB',
+    backgroundColor: colors.background,
   },
   container: {
     padding: spacing.lg,
@@ -46,7 +46,7 @@ export const dashboardStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: spacing.lg,
-    backgroundColor: '#F7F6FB',
+    backgroundColor: colors.background,
   },
   heroCard: {
     marginBottom: spacing.lg,
@@ -66,8 +66,8 @@ export const dashboardStyles = StyleSheet.create({
   categoryHeader: {
     alignSelf: 'flex-start',
     marginBottom: spacing.sm,
-    backgroundColor: '#ECE8FF',
-    borderRadius: 18,
+    backgroundColor: colors.secondaryLight,
+    borderRadius: radius.lg - 2,
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.sm,
   },
@@ -81,7 +81,7 @@ export const dashboardStyles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#D7D0FF',
+    backgroundColor: colors.surface,
     marginRight: spacing.sm,
   },
   categoryTextBlock: {
@@ -90,11 +90,11 @@ export const dashboardStyles = StyleSheet.create({
   categoryTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1F1A44',
+    color: colors.textPrimary,
   },
   categoryCount: {
     fontSize: 12,
-    color: '#5D5782',
+    color: colors.textSecondary,
     marginTop: 2,
   },
   sliderContent: {
@@ -104,18 +104,18 @@ export const dashboardStyles = StyleSheet.create({
   foodCard: {
     width: 188,
     backgroundColor: colors.surface,
-    borderRadius: 16,
+    borderRadius: radius.md + 4,
     padding: spacing.sm,
     marginRight: spacing.sm,
     borderWidth: 1,
-    borderColor: '#E8E6F5',
+    borderColor: colors.border,
     ...shadows.card,
   },
   foodImage: {
     width: '100%',
     height: 108,
-    borderRadius: 12,
-    backgroundColor: '#F0EEFF',
+    borderRadius: radius.md,
+    backgroundColor: colors.secondaryLight,
     marginBottom: spacing.sm,
   },
   foodImageFallback: {
@@ -125,7 +125,7 @@ export const dashboardStyles = StyleSheet.create({
   foodImageFallbackText: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#6D63FF',
+    color: colors.primary,
   },
   foodTitle: {
     fontSize: 16,

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { ActivityIndicator, IconButton } from 'react-native-paper';
 import { getAllFoods } from '../services/kcal/foods';
+import theme from '../styles/light';
 import { dashboardStyles as styles } from '../styles/screens';
 import { FoodDetails } from '../types/food';
 
@@ -10,12 +11,14 @@ const getCategoryIcon = (category: string) => {
 
   if (normalized.includes('fruit') || normalized.includes('fruta')) return 'food-apple';
   if (normalized.includes('veget') || normalized.includes('verd')) return 'carrot';
-  if (normalized.includes('carne') || normalized.includes('pollo') || normalized.includes('pescado') || normalized.includes('proteina')) return 'food-drumstick';
+  if (normalized.includes('carne') || normalized.includes('pollo') || normalized.includes('pescado') || normalized.includes('proteína')) return 'food-drumstick';
   if (normalized.includes('marisco')) return 'fish';
   if (normalized.includes('drink') || normalized.includes('bebida')) return 'cup-water';
   if (normalized.includes('breakfast') || normalized.includes('snack')) return 'coffee';
-  if (normalized.includes('grain') || normalized.includes('bread') || normalized.includes('cereal')) return 'bread-slice';
-
+  if (normalized.includes('grain') || normalized.includes('grano') || normalized.includes('cereal')) return 'seed';
+  if (normalized.includes('pan')) return 'bread-slice';
+  if (normalized.includes('lácteo')) return 'cheese';
+    if (normalized.includes('grasa')) return 'soy-sauce';
   return 'silverware-fork-knife';
 };
 
@@ -77,7 +80,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
   if (loading) {
     return (
       <View style={styles.stateContainer}>
-        <ActivityIndicator size="large" color="#6D63FF" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
         <Text style={styles.loading}>Loading foods...</Text>
       </View>
     );
@@ -95,7 +98,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
     <ScrollView style={styles.screen} contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.heroCard}>
         <Text style={styles.title}>Dashboard</Text>
-        <Text style={styles.subtitle}>Explore foods by category and swipe to compare servings.</Text>
+        <Text style={styles.subtitle}>Aquí puedes ver todos los alimentos registrados por categoría y deslizar para comparar porciones.</Text>
       </View>
 
       {Object.entries(groupedFoods).map(([category, items]) => (
@@ -103,12 +106,12 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
           <View style={styles.categoryHeader}>
             <View style={styles.categoryTitleRow}>
               <View style={styles.categoryIconWrap}>
-                <IconButton icon={getCategoryIcon(category)} size={20} iconColor="#1F1A44" />
+                <IconButton icon={getCategoryIcon(category)} size={20} iconColor={theme.colors.textPrimary} />
               </View>
               <View style={styles.categoryTextBlock}>
                 <Text style={styles.categoryTitle}>{category}</Text>
                 <Text style={styles.categoryCount}>
-                  {items.length} {items.length === 1 ? 'food' : 'foods'}
+                  {items.length} {items.length === 1 ? 'alimento' : 'alimentos'}
                 </Text>
               </View>
             </View>
@@ -140,7 +143,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
 
                 <Text style={styles.foodMeta}>
                   Por {formatValue(food.serving_size)} {food.serving_unit}:{'\n'}
-                  {formatValue(food.calories_per_unit)} Kcal - {formatValue(food.proteins_per_unit)} proteins
+                  {formatValue(food.calories_per_unit)} Kcal - {formatValue(food.proteins_per_unit)} proteínas
                 </Text>
               </TouchableOpacity>
             ))}
