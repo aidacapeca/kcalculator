@@ -11,6 +11,18 @@ class Food(BaseModel):
     category: Optional[str] = None
     image_url: Optional[str] = None
 
+class FoodUpdate(BaseModel):
+    name: Optional[str] = None
+    calories_per_unit: Optional[float] = None
+    proteins_per_unit: Optional[float] = None
+    serving_unit: Optional[str] = None
+    serving_size: Optional[float] = None
+    category: Optional[str] = None
+    image_url: Optional[str] = None
+
+class FoodBulkUpdate(FoodUpdate):
+    id: uuid.UUID
+
 class FoodResponse(Food):
     id: uuid.UUID 
     
