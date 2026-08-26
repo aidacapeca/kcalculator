@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { ActivityIndicator, IconButton } from 'react-native-paper';
 import { getAllFoods } from '../services/kcal/foods';
 import theme from '../styles/light';
@@ -32,6 +32,7 @@ const formatValue = (value: number) => {
 
 const Dashboard = ({ navigation }: { navigation: any }) => {
   const [foods, setFoods] = useState([] as FoodDetails[]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -64,8 +65,23 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
     };
   }, []);
 
+  const filteredFoods = useMemo(() => {
+    const normalizedTerm = searchTerm.trim().toLowerCase();
+
+    if (!normalizedTerm) return foods;
+
+    return foods.filter((food) => {
+      const searchableText = [food.name, food.category]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      return searchableText.includes(normalizedTerm);
+    });
+  }, [foods, searchTerm]);
+
   const groupedFoods = useMemo(() => {
-    return foods.reduce<Record<string, FoodDetails[]>>((acc, food) => {
+    return filteredFoods.reduce<Record<string, FoodDetails[]>>((acc, food) => {
       const categoryName = food.category?.trim() || 'Otros';
 
       if (!acc[categoryName]) {
@@ -75,7 +91,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
       acc[categoryName].push(food);
       return acc;
     }, {});
-  }, [foods]);
+  }, [filteredFoods]);
 
   if (loading) {
     return (
@@ -99,7 +115,24 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
       <View style={styles.heroCard}>
         <Text style={styles.title}>Dashboard</Text>
         <Text style={styles.subtitle}>Aquí puedes ver todos los alimentos registrados por categoría y deslizar para comparar porciones.</Text>
+
+        <TextInput
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+          placeholder="Buscar alimentos o categorías"
+          placeholderTextColor={theme.colors.textSecondary}
+          style={styles.searchInput}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
       </View>
+
+      {Object.keys(groupedFoods).length === 0 ? (
+        <View style={styles.emptyStateContainer}>
+          <Text style={styles.emptyStateTitle}>No se encontraron alimentos</Text>
+          <Text style={styles.emptyStateText}>Prueba con otra palabra clave o limpia la búsqueda.</Text>
+        </View>
+      ) : null}
 
       {Object.entries(groupedFoods).map(([category, items]) => (
         <View key={category} style={styles.categorySection}>
