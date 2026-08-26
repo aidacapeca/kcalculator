@@ -1,0 +1,662 @@
+[
+  {
+    "name": "Pechuga de pollo",
+    "calories_per_unit": 165,
+    "proteins_per_unit": 31,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "1ea60dee-61e4-4465-a6b5-a8fd374b3f3d"
+  },
+  {
+    "name": "Entrecot de ternera",
+    "calories_per_unit": 250,
+    "proteins_per_unit": 26,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "de211789-2912-46fd-849f-20f606e347a8"
+  },
+  {
+    "name": "Carne picada de ternera",
+    "calories_per_unit": 215,
+    "proteins_per_unit": 26,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "88196494-1f43-4144-bbe8-81ba0c476d91"
+  },
+  {
+    "name": "Salmón",
+    "calories_per_unit": 208,
+    "proteins_per_unit": 20,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "83c8c4b3-57d4-4ab4-9378-237bdebd50d8"
+  },
+  {
+    "name": "Gambas",
+    "calories_per_unit": 99,
+    "proteins_per_unit": 24,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "ae7d91e4-adc7-4eee-9a8a-742304f06ded"
+  },
+  {
+    "name": "Atún al natural",
+    "calories_per_unit": 116,
+    "proteins_per_unit": 26,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "84e13de4-b712-4033-90b2-f5c87b9331a9"
+  },
+  {
+    "name": "Panceta",
+    "calories_per_unit": 518,
+    "proteins_per_unit": 9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "carnes",
+    "image_url": "",
+    "id": "fa9db179-24e2-4acd-8f92-14b6e6000bac"
+  },
+  {
+    "name": "Chorizo",
+    "calories_per_unit": 455,
+    "proteins_per_unit": 24,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "carnes",
+    "image_url": "",
+    "id": "1da30cf3-db4d-4636-8760-4f19642cc127"
+  },
+  {
+    "name": "Longaniza",
+    "calories_per_unit": 300,
+    "proteins_per_unit": 18,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "carnes",
+    "image_url": "",
+    "id": "6dcf6023-2a0b-4e7d-b85f-74df545b029b"
+  },
+  {
+    "name": "Morcilla",
+    "calories_per_unit": 380,
+    "proteins_per_unit": 14,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "carnes",
+    "image_url": "",
+    "id": "7e2e4a61-3ca6-44db-8417-4c70b4078f3d"
+  },
+  {
+    "name": "Huevo",
+    "calories_per_unit": 72,
+    "proteins_per_unit": 6.3,
+    "serving_unit": "unidad",
+    "serving_size": 1,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "3282a235-7316-49aa-a33c-1ea0eaf36663"
+  },
+  {
+    "name": "Claras de huevo",
+    "calories_per_unit": 492,
+    "proteins_per_unit": 9.7,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "e11993fc-a774-4c31-a115-e54903af0f29"
+  },
+  {
+    "name": "Jamón de pavo",
+    "calories_per_unit": 105,
+    "proteins_per_unit": 18,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "proteínas",
+    "image_url": "",
+    "id": "bbe45676-790e-4b4c-baf4-05e095b70ebd"
+  },
+  {
+    "name": "Queso crema",
+    "calories_per_unit": 250,
+    "proteins_per_unit": 6,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "32dae105-e20a-422d-9f4c-cbd16af78be6"
+  },
+  {
+    "name": "Queso mozzarella",
+    "calories_per_unit": 280,
+    "proteins_per_unit": 28,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "944c87ed-763e-4b74-8ae1-cc78a6df1e88"
+  },
+  {
+    "name": "Queso parmesano",
+    "calories_per_unit": 431,
+    "proteins_per_unit": 38,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "4362f1aa-2a62-47f3-a0fd-620d7fd61a74"
+  },
+  {
+    "name": "Leche semidesnatada",
+    "calories_per_unit": 46,
+    "proteins_per_unit": 3.4,
+    "serving_unit": "ml",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "af17789a-f1a2-4188-b681-ef6ee6dca094"
+  },
+  {
+    "name": "Yogur griego natural",
+    "calories_per_unit": 120,
+    "proteins_per_unit": 9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "e5eab107-5231-4174-9d96-5a1603e44b29"
+  },
+  {
+    "name": "Harina de trigo",
+    "calories_per_unit": 364,
+    "proteins_per_unit": 10,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "33d045a2-1a1a-49eb-9bcc-0c3177f024e7"
+  },
+  {
+    "name": "Avena",
+    "calories_per_unit": 372,
+    "proteins_per_unit": 14,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "32b4153f-397f-4c6c-bc3f-bba34c0d8854"
+  },
+  {
+    "name": "Arroz blanco cocido",
+    "calories_per_unit": 130,
+    "proteins_per_unit": 2.7,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "7add80d5-3f29-4673-b128-e665766366c7"
+  },
+  {
+    "name": "Arroz basmati cocido",
+    "calories_per_unit": 130,
+    "proteins_per_unit": 2.7,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "c8d4a2d6-325b-421a-9e07-1644c048e375"
+  },
+  {
+    "name": "Quinoa cocida",
+    "calories_per_unit": 120,
+    "proteins_per_unit": 4.4,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "a7f1c280-0330-472c-b2d4-6a127806439e"
+  },
+  {
+    "name": "Gnocchi",
+    "calories_per_unit": 160,
+    "proteins_per_unit": 3.5,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "76df5794-9b2b-48fb-9ecc-4c3f8c39c639"
+  },
+  {
+    "name": "Pasta cocida",
+    "calories_per_unit": 158,
+    "proteins_per_unit": 5.8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "d9329a37-a2bf-4e09-959f-2edda152b7b6"
+  },
+  {
+    "name": "Pan de trigo",
+    "calories_per_unit": 265,
+    "proteins_per_unit": 9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "58327cc4-2b83-4579-9e36-efba39d87bf7"
+  },
+  {
+    "name": "Tortilla de trigo",
+    "calories_per_unit": 310,
+    "proteins_per_unit": 8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "ea3bd40a-dd9e-4e1d-9f52-fc2f79357bec"
+  },
+  {
+    "name": "Patata",
+    "calories_per_unit": 77,
+    "proteins_per_unit": 2,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "tubérculos",
+    "image_url": "",
+    "id": "d6c219f3-ad64-43ab-98a3-e7af50d4886b"
+  },
+  {
+    "name": "Yuca",
+    "calories_per_unit": 160,
+    "proteins_per_unit": 1.4,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "tubérculos",
+    "image_url": "",
+    "id": "bfc823f3-77ba-49aa-b60c-ee8cef99e04f"
+  },
+  {
+    "name": "Aguacate",
+    "calories_per_unit": 160,
+    "proteins_per_unit": 2,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutas",
+    "image_url": "",
+    "id": "037a7efd-9c7a-48ba-b28c-e180ea369160"
+  },
+  {
+    "name": "Mango",
+    "calories_per_unit": 60,
+    "proteins_per_unit": 0.8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutas",
+    "image_url": "",
+    "id": "991e6058-b9c8-4eef-ba72-878d3c9a376f"
+  },
+  {
+    "name": "Manzana",
+    "calories_per_unit": 52,
+    "proteins_per_unit": 0.3,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutas",
+    "image_url": "",
+    "id": "49506219-2255-4609-b32c-5c3b8dd5ff03"
+  },
+  {
+    "name": "Plátano",
+    "calories_per_unit": 89,
+    "proteins_per_unit": 1.1,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutas",
+    "image_url": "",
+    "id": "e4c7c024-4396-4ad5-9c7e-5e959721268d"
+  },
+  {
+    "name": "Maíz dulce",
+    "calories_per_unit": 86,
+    "proteins_per_unit": 3.2,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "680b227e-8e9f-48a8-b9f3-4a686e2b9cb1"
+  },
+  {
+    "name": "Edamame",
+    "calories_per_unit": 121,
+    "proteins_per_unit": 11.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "legumbres",
+    "image_url": "",
+    "id": "297f3ba3-14f0-4165-9ba6-e28b14af894d"
+  },
+  {
+    "name": "Tomate",
+    "calories_per_unit": 18,
+    "proteins_per_unit": 0.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "e7dd5d3e-2215-4c46-85b7-44f5d3fb2454"
+  },
+  {
+    "name": "Cebolla",
+    "calories_per_unit": 40,
+    "proteins_per_unit": 1.1,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "55e163ae-a67d-460c-acf3-05c20b386db8"
+  },
+  {
+    "name": "Pimiento rojo",
+    "calories_per_unit": 31,
+    "proteins_per_unit": 1,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "52b751a0-b6e5-4b47-b8d1-ae221f654fd2"
+  },
+  {
+    "name": "Pimiento verde",
+    "calories_per_unit": 20,
+    "proteins_per_unit": 0.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "a11ca43d-38f6-42ec-b9dd-72c287b1dd2f"
+  },
+  {
+    "name": "Pepino",
+    "calories_per_unit": 15,
+    "proteins_per_unit": 0.7,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "4fcc168b-184f-45e4-a844-52f4430de298"
+  },
+  {
+    "name": "Lechuga",
+    "calories_per_unit": 15,
+    "proteins_per_unit": 1.4,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "84801ec5-4055-4495-8e9c-e2274e263305"
+  },
+  {
+    "name": "Zanahoria",
+    "calories_per_unit": 41,
+    "proteins_per_unit": 0.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "57479f94-35ac-400f-9ebe-9c1f1437e54e"
+  },
+  {
+    "name": "Calabacín",
+    "calories_per_unit": 17,
+    "proteins_per_unit": 1.2,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "6421b8ff-cab8-42c2-8fd9-5027eb319aa8"
+  },
+  {
+    "name": "Espinaca",
+    "calories_per_unit": 23,
+    "proteins_per_unit": 2.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "88ea1131-a144-46ac-b0d0-e56b9265a4ec"
+  },
+  {
+    "name": "Champiñones",
+    "calories_per_unit": 22,
+    "proteins_per_unit": 3.1,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "9d519e20-a80e-4356-89e9-29466b9940a6"
+  },
+  {
+    "name": "Brócoli",
+    "calories_per_unit": 34,
+    "proteins_per_unit": 2.8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "verduras",
+    "image_url": "",
+    "id": "08485258-629a-4791-9644-9d85b39868d2"
+  },
+  {
+    "name": "Garbanzos cocidos",
+    "calories_per_unit": 164,
+    "proteins_per_unit": 8.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "legumbres",
+    "image_url": "",
+    "id": "f877e595-aece-4e53-b1c1-9c89b472cc78"
+  },
+  {
+    "name": "Lentejas cocidas",
+    "calories_per_unit": 116,
+    "proteins_per_unit": 9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "legumbres",
+    "image_url": "",
+    "id": "f0e6fbf0-ce52-4622-b030-2cc50aac22c9"
+  },
+  {
+    "name": "Frijoles negros cocidos",
+    "calories_per_unit": 132,
+    "proteins_per_unit": 8.9,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "legumbres",
+    "image_url": "",
+    "id": "d1cc000a-2b2e-47b0-969b-a702d80acc3f"
+  },
+  {
+    "name": "Aceite de oliva",
+    "calories_per_unit": 119,
+    "proteins_per_unit": 0,
+    "serving_unit": "cda",
+    "serving_size": 1,
+    "category": "grasas",
+    "image_url": "",
+    "id": "ebbf7155-d4de-4488-bcfd-e7ff9a0856b5"
+  },
+  {
+    "name": "Aceite de oliva",
+    "calories_per_unit": 40,
+    "proteins_per_unit": 0,
+    "serving_unit": "cdta",
+    "serving_size": 1,
+    "category": "grasas",
+    "image_url": "",
+    "id": "0eff36a0-8d08-4d83-b5d0-212f12418689"
+  },
+  {
+    "name": "Mayonesa",
+    "calories_per_unit": 94,
+    "proteins_per_unit": 0.1,
+    "serving_unit": "cda",
+    "serving_size": 1,
+    "category": "salsas",
+    "image_url": "",
+    "id": "37bafd90-c822-408d-b722-e476350bf5e4"
+  },
+  {
+    "name": "Mostaza",
+    "calories_per_unit": 10,
+    "proteins_per_unit": 0.6,
+    "serving_unit": "cda",
+    "serving_size": 1,
+    "category": "salsas",
+    "image_url": "",
+    "id": "9caadb29-1e91-4443-96f7-5693b540b2be"
+  },
+  {
+    "name": "Salsa de soja",
+    "calories_per_unit": 9,
+    "proteins_per_unit": 1.3,
+    "serving_unit": "cda",
+    "serving_size": 1,
+    "category": "salsas",
+    "image_url": "",
+    "id": "d347ce39-4ebc-4f37-8ef5-1f97f9c717db"
+  },
+  {
+    "name": "Leche de coco",
+    "calories_per_unit": 197,
+    "proteins_per_unit": 2,
+    "serving_unit": "ml",
+    "serving_size": 100,
+    "category": "salsas",
+    "image_url": "",
+    "id": "f1fb0f57-7032-4f04-baab-f19ba4103a45"
+  },
+  {
+    "name": "Tomate triturado",
+    "calories_per_unit": 29,
+    "proteins_per_unit": 1.3,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "salsas",
+    "image_url": "",
+    "id": "4417a88f-a4a0-4fe4-9eac-504eef1e33d9"
+  },
+  {
+    "name": "Crema de leche",
+    "calories_per_unit": 292,
+    "proteins_per_unit": 2.1,
+    "serving_unit": "ml",
+    "serving_size": 100,
+    "category": "lácteos",
+    "image_url": "",
+    "id": "2c358066-9931-4838-886b-d54ece9476d7"
+  },
+  {
+    "name": "Proteína en polvo",
+    "calories_per_unit": 120,
+    "proteins_per_unit": 24,
+    "serving_unit": "g",
+    "serving_size": 30,
+    "category": "suplementos",
+    "image_url": "",
+    "id": "1f654285-4d32-4133-adb0-ae232e66dd5f"
+  },
+  {
+    "name": "Miel",
+    "calories_per_unit": 64,
+    "proteins_per_unit": 0.1,
+    "serving_unit": "cda",
+    "serving_size": 1,
+    "category": "endulzantes",
+    "image_url": "",
+    "id": "dfc17aaa-bfb1-45fc-8f28-eed40ac32a30"
+  },
+  {
+    "name": "Azúcar",
+    "calories_per_unit": 16,
+    "proteins_per_unit": 0,
+    "serving_unit": "cdta",
+    "serving_size": 1,
+    "category": "endulzantes",
+    "image_url": "",
+    "id": "9d1fb5b6-0f75-4168-9a47-1b0e45ad7c3f"
+  },
+  {
+    "name": "Chocolate negro 70%",
+    "calories_per_unit": 598,
+    "proteins_per_unit": 7.8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "dulces",
+    "image_url": "",
+    "id": "377bc4bc-de84-47e8-a8b7-05057084febd"
+  },
+  {
+    "name": "Almendras",
+    "calories_per_unit": 579,
+    "proteins_per_unit": 21.2,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutos secos",
+    "image_url": "",
+    "id": "254b20f2-863f-4b8f-a397-f91211d20252"
+  },
+  {
+    "name": "Mantequilla de cacahuete",
+    "calories_per_unit": 588,
+    "proteins_per_unit": 25,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutos secos",
+    "image_url": "",
+    "id": "5c72dd48-def8-4501-ba70-b7afb64708d4"
+  },
+  {
+    "name": "Cacahuetes",
+    "calories_per_unit": 567,
+    "proteins_per_unit": 25.8,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "frutos secos",
+    "image_url": "",
+    "id": "035d732c-02fa-4969-8491-4c8d8d0fce46"
+  },
+  {
+    "name": "Harina PAN",
+    "calories_per_unit": 350,
+    "proteins_per_unit": 7.3,
+    "serving_unit": "g",
+    "serving_size": 100,
+    "category": "cereales",
+    "image_url": "",
+    "id": "aaad3167-1e1f-489b-94ae-d03c741f7b80"
+  },
+  {
+  "name": "Tortilla  Maiz (pequeña)",
+  "calories_per_unit": 226,
+  "proteins_per_unit": 5.3,
+  "serving_unit": "g",
+  "serving_size": 100,
+  "category": "cereales",
+  "image_url": "string",
+  "id": "264e7850-9855-4fda-8ccf-bd44f03a6a25"
+}
+]
