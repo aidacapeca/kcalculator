@@ -1,8 +1,9 @@
 import React from 'react';
-import { Alert, ScrollView, View } from 'react-native';
+import { Alert, Linking, ScrollView, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button, IconButton, Modal, Portal, Surface, Text } from 'react-native-paper';
+import * as Clipboard from 'expo-clipboard';
 import { PlateProvider, usePlate } from '../context/PlateContext';
 import theme from '../styles/light';
 import { routerStyles as styles } from '../styles/screens';
@@ -14,6 +15,40 @@ const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
   const { drawerVisible, openDrawer, closeDrawer, items, clearItems, totalCalories, totalProteins } = usePlate();
+
+  const buildShareText = () => {
+    const selectedFoods = items.length > 0
+      ? items.map((item) => `• ${item.name}: ${item.amount} ${item.unit} (${item.calories} kcal, ${item.proteins} g proteína)`).join('\n')
+      : 'Todavía no he añadido alimentos a este plato.';
+
+    return `🍽️ Mi resumen de comida\n\nTotal: ${totalCalories} kcal • ${totalProteins} g de proteína\n\n${selectedFoods}\n`;
+  };
+
+  const handleCopySummary = async () => {
+    try {
+      await Clipboard.setStringAsync(buildShareText());
+      Alert.alert('Resumen copiado', 'El texto del plato ya está en el portapapeles.');
+    } catch (error) {
+      Alert.alert('No se pudo copiar', 'No se pudo copiar el resumen al portapapeles.');
+    }
+  };
+
+  const handleShareWhatsApp = async () => {
+    const text = buildShareText();
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+
+    try {
+      const supported = await Linking.canOpenURL(whatsappUrl);
+
+      if (supported) {
+        await Linking.openURL(whatsappUrl);
+      } else {
+        Alert.alert('WhatsApp no disponible', 'Instala WhatsApp para compartir tu plato.');
+      }
+    } catch (error) {
+      Alert.alert('No se pudo compartir', 'No se pudo abrir WhatsApp en este momento.');
+    }
+  };
 
   return (
     <>
@@ -87,7 +122,8 @@ function AppNavigator() {
                   style={styles.summaryIcon}
                 />
                 <Text style={styles.summaryText}>
-                  <Text style={styles.summaryValue}>{totalCalories}</Text> kcal
+                  <Text style={styles.summaryValue}>{totalCalories}</Text>
+                  <Text> kcal</Text>
                 </Text>
               </View>
 
@@ -99,30 +135,44 @@ function AppNavigator() {
                   style={styles.summaryIcon}
                 />
                 <Text style={styles.summaryText}>
-                  <Text style={styles.summaryValue}>{totalProteins} gr</Text> de proteína
+                  <Text style={styles.summaryValue}>{totalProteins} gr</Text>
+                  <Text> de proteína</Text>
                 </Text>
               </View>
             </View>
 
             <View style={styles.drawerActions}>
-              <Button
-                mode="text"
-                compact
-                icon="delete-outline"
-                textColor={theme.colors.textSecondary}
-                onPress={clearItems}
-              >
-                Vaciar
-              </Button>
+              <View style={styles.drawerActionsRow}>
+                <Button
+                  mode="text"
+                  compact
+                  icon="delete-outline"
+                  textColor={theme.colors.textSecondary}
+                  style={styles.drawerActionButton}
+                  onPress={clearItems}
+                >
+                  Vaciar
+                </Button>
+                <Button
+                  mode="text"
+                  compact
+                  icon="content-copy"
+                  textColor={theme.colors.textPrimary}
+                  style={styles.drawerActionButton}
+                  onPress={handleCopySummary}
+                >
+                  Copiar resumen
+                </Button>
+              </View>
               <Button
                 mode="contained-tonal"
-                compact
                 icon="send-outline"
                 buttonColor={theme.colors.secondaryLight}
                 textColor={theme.colors.textPrimary}
-                onPress={() => Alert.alert('Plate', 'Placeholder action')}
+                style={styles.shareButton}
+                onPress={handleShareWhatsApp}
               >
-                Enviar por Whatsapp
+                Enviar por WhatsApp
               </Button>
             </View>
           </Surface>

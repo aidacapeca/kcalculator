@@ -187,10 +187,12 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
 
       <View style={styles.nutritionRow}>
         <Text style={styles.nutritionText}>
-          Calorías: <Text style={styles.nutritionValue}>{caloriesText}</Text>
+          <Text>Calorías: </Text>
+          <Text style={styles.nutritionValue}>{caloriesText}</Text>
         </Text>
         <Text style={styles.nutritionText}>
-          Proteínas: <Text style={styles.nutritionValue}>{proteinsText}</Text>
+          <Text>Proteínas: </Text>
+          <Text style={styles.nutritionValue}>{proteinsText}</Text>
         </Text>
       </View>
 

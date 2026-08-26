@@ -441,9 +441,17 @@ export const routerStyles = StyleSheet.create({
     fontWeight: '600',
   },
   drawerActions: {
+    gap: spacing.xs,
+  },
+  drawerActionsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     gap: spacing.sm,
+  },
+  drawerActionButton: {
+    flex: 1,
+  },
+  shareButton: {
+    width: '100%',
   },
 });
