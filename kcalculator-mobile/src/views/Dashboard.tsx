@@ -176,7 +176,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
 
                 <Text style={styles.foodMeta}>
                   Por {formatValue(food.serving_size)} {food.serving_unit}:{'\n'}
-                  {formatValue(food.calories_per_unit)} Kcal - {formatValue(food.proteins_per_unit)} proteínas
+                  {formatValue(food.calories_per_unit)} Kcal - {formatValue(food.proteins_per_unit)} g de proteínas
                 </Text>
               </TouchableOpacity>
             ))}

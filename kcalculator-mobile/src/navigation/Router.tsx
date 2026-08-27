@@ -14,7 +14,7 @@ import FoodDetailsScreen from '../views/FoodDetails';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { drawerVisible, openDrawer, closeDrawer, items, clearItems, totalCalories, totalProteins } = usePlate();
+  const { drawerVisible, openDrawer, closeDrawer, items, removeItem, clearItems, totalCalories, totalProteins } = usePlate();
 
   const buildShareText = () => {
     const selectedFoods = items.length > 0
@@ -102,12 +102,21 @@ function AppNavigator() {
               ) : (
                 items.map((item) => (
                   <View key={item.id} style={styles.drawerItemCard}>
-                    <Text variant="titleMedium" style={styles.drawerItemTitle}>
-                      {item.name}
-                    </Text>
-                    <Text variant="bodySmall" style={styles.drawerItemMeta}>
-                      {item.amount} {item.unit} • {item.calories} kcal • {item.proteins} gr de proteína
-                    </Text>
+                    <View style={styles.drawerItemContent}>
+                      <Text variant="titleMedium" style={styles.drawerItemTitle}>
+                        {item.name}
+                      </Text>
+                      <Text variant="bodySmall" style={styles.drawerItemMeta}>
+                        {item.amount} {item.unit} • {item.calories} kcal • {item.proteins} gr de proteína
+                      </Text>
+                    </View>
+                    <IconButton
+                      icon="minus"
+                      size={18}
+                      iconColor={theme.colors.error}
+                      accessibilityLabel={`Eliminar ${item.name} del plato`}
+                      onPress={() => removeItem(item.id)}
+                    />
                   </View>
                 ))
               )}

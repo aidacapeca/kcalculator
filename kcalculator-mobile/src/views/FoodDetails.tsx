@@ -111,7 +111,10 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
   const proteinsText = `${totalProteins} g`;
 
   const updateAmount = (nextValue: string) => {
-    const sanitized = nextValue.replace(/[^0-9]/g, '');
+    const normalizedValue = nextValue.replace(',', '.');
+    const sanitized = normalizedValue
+      .replace(/[^0-9.]/g, '')
+      .replace(/\.(?=.*\.)/g, '');
     setAmount(sanitized);
   };
 
@@ -157,7 +160,7 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
             mode="flat"
             value={amount}
             onChangeText={updateAmount}
-            keyboardType="numeric"
+            keyboardType="decimal-pad"
             style={styles.amountInput}
             underlineColor="transparent"
             activeUnderlineColor="transparent"

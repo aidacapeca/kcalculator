@@ -408,6 +408,12 @@ export const routerStyles = StyleSheet.create({
     borderRadius: radius.md,
     padding: spacing.md,
     marginBottom: spacing.sm,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  drawerItemContent: {
+    flex: 1,
+    minWidth: 0,
   },
   drawerItemTitle: {
     color: colors.textPrimary,
