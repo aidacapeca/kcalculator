@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Image, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import {
   ActivityIndicator,
   Avatar,
@@ -45,7 +45,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
   const [food, setFood] = useState<FoodDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [imageFailed, setImageFailed] = useState(false);
   const [amount, setAmount] = useState('100');
 
   const fetchFoodDetails = useCallback(async () => {
@@ -62,7 +61,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
       const response = await getFoodById(foodId);
       setFood(response);
       setAmount(String(response.serving_size || 100));
-      setImageFailed(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch food details.');
     } finally {
@@ -137,19 +135,6 @@ const FoodDetailsScreen = ({ route }: FoodDetailsScreenProps) => {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.headerBlock}>
-        <View style={styles.imageWrapper}>
-          {food.image_url && !imageFailed ? (
-            <Image
-              source={{ uri: food.image_url }}
-              style={styles.image}
-              resizeMode="cover"
-              onError={() => setImageFailed(true)}
-            />
-          ) : (
-            <Avatar.Icon size={72} icon="image-outline" style={styles.imagePlaceholder} />
-          )}
-        </View>
-
         <Text variant="headlineSmall" style={styles.title}>
           {food.name || 'Unknown food'}
         </Text>

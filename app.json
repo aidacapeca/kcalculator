@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "3bdaf3a6-ea73-44e1-9d91-ebc8a4b4a109"
+      }
+    },
+    "android": {
+      "package": "com.acapeca.kcalculatorapp"
+    }
+  }
+}
