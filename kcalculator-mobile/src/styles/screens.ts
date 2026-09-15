@@ -148,15 +148,6 @@ export const dashboardStyles = StyleSheet.create({
     backgroundColor: colors.secondaryLight,
     marginBottom: spacing.sm,
   },
-  foodImageFallback: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  foodImageFallbackText: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: colors.primary,
-  },
   foodTitle: {
     fontSize: 16,
     fontWeight: '700',

@@ -1,8 +1,6 @@
-February, 27th, 2026 
-
 # kcalculator
-A simple FastAPI-based backend service to manage foods and their nutritional information (calories per 100g).
-The project runs with Docker and PostgreSQL.
+
+Kcalculator is a nutrition app with a FastAPI backend, PostgreSQL database, and an Expo/React Native mobile app. The deployed mobile app uses the public API at `https://kcalculator.onrender.com`.
 
 ## Tech Stack
 - **Python 3.11** (Runs inside Docker container)
@@ -11,15 +9,18 @@ The project runs with Docker and PostgreSQL.
 - **SQLAlchemy:** ORM
 - **Pydantic:** Data validation
 - **Docker & Docker Compose:** Containerization
-- **React:** 
+- **Expo SDK 57 / React Native:** Mobile application
 
 
-## Technical Requirements 
-Make sure you have the following installed o your machine: 
+## Requirements
+
+Install the following tools:
 - Git 
 - Docker 
-- Docker Compose (v2+ recommended)
-_⚠ You do NOT need Python installed locally unless you want to run the project without Docker._ 
+- Docker Compose v2+
+- Node.js 20+ (for the mobile app and EAS CLI)
+
+Python is not required locally when using Docker.
 
 ### Check versions: 
 ```
@@ -33,48 +34,54 @@ git --version
 git clone <url>
 cd kcalculator 
 ```
-## Start the Project
+## Run the backend locally
 
-### Quick Start:
-To quickly start the project, run the following command in the root directory (`kcalculator`):
+From the repository root:
 ```
-npm run start
+docker compose up --build
 ```
-This command will:
-- Initialize an empty database.
-- Launch the API server (using Docker containers).
-- Start the mobile application.
 
-### Step-by-Step Guide:
-If you prefer a more detailed approach, follow these steps:
-
-1. Build and start the Docker containers:
-    ```
-    docker compose up --build
-    ```
-    This process will:
-    - Build the FastAPI container.
-    - Start the PostgreSQL database server.
-    - Automatically create the database and tables using SQLAlchemy.
-
-_⚠ Note: The database will be empty unless you restore it using a dump file._
-
-### Start the project with existing data (using dump.sql )
-1. Start containers as usual with `docker compose up --build` _(you can check is running properly using `docker ps`)_ 
-2. Restore the database 
-```
-docker exec -i calories_postgres \
-psql -U calories_user -d calories_db < dump.sql
-``` 
+This starts the FastAPI service on port `8000` and PostgreSQL on port `5433`. The database volume is persisted in Docker. The API creates its tables on startup, but the database does not include seed data automatically.
 
 ## Access the API 
-* [Base URL](http://localhost:8000)
-* [Swagger Documentation](http://localhost:8000/docs)
+- Base URL: http://localhost:8000
+- Swagger documentation: http://localhost:8000/docs
 
-## Stop the project 
-1. Stop containers `docker compose down` 
+## Run the mobile app locally
+
+In a second terminal:
+```bash
+cd kcalculator-mobile
+npm install
+npm start
+```
+
+The mobile app reads `EXPO_PUBLIC_API_URL` from `kcalculator-mobile/.env`. For local development, set it to the reachable API URL, for example:
+```env
+EXPO_PUBLIC_API_URL=http://localhost:8000
+```
+
+When testing on a physical phone, replace `localhost` with the computer's local network IP. The production APK uses `https://kcalculator.onrender.com` through the `preview` EAS profile.
+
+## Build an Android APK
+
+The project is configured in `kcalculator-mobile/eas.json` to produce an installable APK:
+```bash
+cd kcalculator-mobile
+npx eas login
+npx eas build --platform android --profile preview
+```
+
+EAS builds the APK in the cloud. After the build finishes, use the download link shown by EAS. This APK is for Android; iOS builds require Apple Developer credentials and are distributed through TestFlight or the App Store.
+
+## Stop the backend
+
+```bash
+docker compose down
+```
 
 
-# TBD: 
-1. Instructions of how to close the project and include new data by exporting dump
-2. Adding a forced push
+## Notes
+
+- Do not commit `.env` files or credentials.
+- The root `npm start` script is not the recommended way to run both services: Docker Compose is a long-running process, so start the backend and mobile app in separate terminals.

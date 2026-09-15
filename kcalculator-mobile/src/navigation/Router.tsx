@@ -35,16 +35,10 @@ function AppNavigator() {
 
   const handleShareWhatsApp = async () => {
     const text = buildShareText();
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(text)}`;
 
     try {
-      const supported = await Linking.canOpenURL(whatsappUrl);
-
-      if (supported) {
-        await Linking.openURL(whatsappUrl);
-      } else {
-        Alert.alert('WhatsApp no disponible', 'Instala WhatsApp para compartir tu plato.');
-      }
+      await Linking.openURL(whatsappUrl);
     } catch (error) {
       Alert.alert('No se pudo compartir', 'No se pudo abrir WhatsApp en este momento.');
     }

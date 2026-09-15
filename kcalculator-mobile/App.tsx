@@ -1,4 +1,5 @@
 import { MD3LightTheme, PaperProvider } from 'react-native-paper';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Router from './src/navigation/Router';
 import appTheme from './src/styles/light';
 
@@ -21,7 +22,10 @@ const paperTheme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={paperTheme}>
+    <PaperProvider
+      theme={paperTheme}
+      settings={{ icon: (props) => <MaterialCommunityIcons {...props} /> }}
+    >
       <Router />
     </PaperProvider>
   );

@@ -97,7 +97,6 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
     return (
       <View style={styles.stateContainer}>
         <ActivityIndicator size="large" color={theme.colors.primary} />
-        <Text style={styles.loading}>Loading foods...</Text>
       </View>
     );
   }
@@ -164,11 +163,7 @@ const Dashboard = ({ navigation }: { navigation: any }) => {
               >
                 {food.image_url ? (
                   <Image source={{ uri: food.image_url }} style={styles.foodImage} resizeMode="cover" />
-                ) : (
-                  <View style={[styles.foodImage, styles.foodImageFallback]}>
-                    <Text style={styles.foodImageFallbackText}>{food.name.charAt(0).toUpperCase()}</Text>
-                  </View>
-                )}
+                ) : null}
 
                 <Text style={styles.foodTitle} numberOfLines={2}>
                   {food.name}
